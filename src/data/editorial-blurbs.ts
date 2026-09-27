@@ -68,7 +68,9 @@ export const editorialBlurbsBySlug: Record<string, string> = {
   "hr98w-jev-visual":
     "Visual tooling to inspect Jev outputs and confidence over UI or screenshots. Handy for debugging thresholds when text logs are not enough.",
   "mapika-decider":
-    "A small decision service pattern built on System One primitives. Good starter code if you want a thin HTTP wrapper around typed questions.",
+    "Mapika's full open System One family, not a hobby wrapper: public mixture, calibrate CLI, game GIFs from one forward pass each move, and README that argues honestly with JevBench rows it did not run.",
+  "langchain-ai-langchain-typesafe":
+    "LangChain finally shipped the boring part: TypeSafeClassifier as a Runnable, middleware for model pick and tool-risk gates, and docs that admit the experimental extra might move. Your graph stops paying chat prices for labels.",
   "dbreunig-building-with-jev-skill":
     "A Claude-style skill for building with Jev the right way: structured state, typed questions, thresholds in code. Share it with teammates who keep prompting for labels.",
   "typesafe-ai-typesafe-sdk-python":
@@ -82,7 +84,9 @@ export const editorialBlurbsBySlug: Record<string, string> = {
   "jkudish-jev-mcp":
     "MCP server exposing Jev judgments as tools your agent can call. Explicit schemas beat mystery endpoints when you are wiring Claude Code.",
   "kitze-unclutter":
-    "Unclutter uses structured decisions to tame noisy agent context. Worth a look if compaction listings resonate but you want a product-shaped UX.",
+    "Kitze turned Jev into a declutter button: classify the junk, store template hides locally, and demand 0.9 on both probability and confidence before you ghost a pixel. BYOK, no full HTML upload theater.",
+  "receptron-laya":
+    "When your agent stack is Node-only but the ticket queue wants Laya probabilities, receptron downloads the ONNX bundle and batches Choice, Score, and Noul like the Python reference. ollaya still wins for pull-many-models ops; this wins for one typed import.",
   "pithings-advocaat":
     "Legal-adjacent triage patterns with System One gates. Interesting reference for document-heavy workflows that still need thresholdable scores.",
   "itsmostafa-typesafe-mcp":
