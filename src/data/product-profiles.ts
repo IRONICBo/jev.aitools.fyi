@@ -8045,4 +8045,407 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "arcade.jevdoom.com lists games Jev and other models played. Submit URLs, coin-vote, sort Top or New. Fan-made; demo at jevdoom.com/play.",
   },
 
+  "langchain-ai-langchain-typesafe": {
+    slug: "langchain-ai-langchain-typesafe",
+    status: "published",
+    problem:
+      "LangGraph and LangChain agents still burn a full chat model call whenever they need a label, a route, or a pre-tool risk check, even when the answer set is finite.",
+    targetUser:
+      "Python teams already on LangChain who want official TypeSafeClassifier runnables, parallel Choice, Score, and Noul, and optional middleware inside create_agent flows.",
+    overview:
+      "langchain-typesafe (PyPI langchain-typesafe v0.0.1a3, MIT, maintained by LangChain) lives in the langchain-ai/langchain monorepo. TypeSafeClassifier is a Runnable: pass state as text, JSON, or LangChain messages plus a questions map built from Choice, Score, and Noul helpers; invoke returns typed answers per question in one System One request. Set TYPESAFE_API_KEY. The experimental extra adds ModelRouterMiddleware (once-per-run model tier Choice from the latest human message) and AutoModeMiddleware (Noul gate before configured tools). Provider errors inherit LangChain model-error hierarchy. LangChain's Building a Harness with Jev post and docs.langchain.com integration pages document routing and Auto Mode patterns; this directory page covers the package surface, not hosted Jev pricing.",
+    creator: {
+      name: "LangChain",
+      handle: "langchain-ai",
+      githubUrl: "https://github.com/langchain-ai",
+      companyUrl: "https://www.langchain.com",
+    },
+    jevUsage: {
+      flowRole:
+        "Parallel System One questions inside LangChain Runnable pipelines and optional agent middleware",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "ClassifierRequest state field: plain string, structured dict, or BaseMessage lists converted to role/content objects per PyPI docs.",
+      decisionOut:
+        "Per-question ChoiceAnswer, ScoreAnswer, or NoulAnswer objects with probabilities; middleware stores full ChoiceAnswer in agent state for traces.",
+      flowSteps: [
+        "uv add langchain-typesafe and export TYPESAFE_API_KEY",
+        "Build questions map and call TypeSafeClassifier.invoke or ainvoke",
+        "Optional: uv add langchain-typesafe[experimental] for middleware",
+        "Attach ModelRouterMiddleware or AutoModeMiddleware when using create_agent",
+        "Branch in Python on thresholds instead of parsing model prose",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "PyPI lists langchain-typesafe 0.0.1a3 with LangChain org ownership and MIT license.",
+          source: "pypi.org/project/langchain-typesafe",
+        },
+        {
+          claim:
+            "LangChain blog post Building a Harness with Jev documents ModelRouterMiddleware and AutoModeMiddleware examples.",
+          source: "langchain.com/blog/building-a-harness-with-jev",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "This is the LangChain-native SDK lane next to typesafe-ai-typesafe-sdk-python for raw HTTP and vercel-ai-sdk-provider for Vercel AI SDK apps. Use middleware when your harness already calls create_agent; call TypeSafeClassifier inside LangGraph nodes when you own the state machine. nidhi-singh02-agent-router and gargpratyush-jev-router solve multi-CLI model tier picks in terminals; langchain-typesafe stays in your Python service. Pair with antoniocoppe-jev-harness when teammates need vocabulary for gate design, and the /guides/jev-with-ai-agents/langchain-langgraph page for install snippets.",
+    keyFeatures: [
+      "TypeSafeClassifier Runnable with parallel question batching",
+      "Choice, Score, and Noul helper constructors",
+      "Experimental ModelRouterMiddleware for cost-aware model Choice",
+      "Experimental AutoModeMiddleware for tool-risk Noul gates",
+      "Message-as-state conversion for chat-shaped agent loops",
+    ],
+    stack: [
+      "Python 3.10+",
+      "LangChain",
+      "TypeSafe System One API",
+      "Optional LangGraph nodes",
+    ],
+    links: {
+      repo: "https://github.com/langchain-ai/langchain",
+      docs: "https://docs.langchain.com/oss/python/integrations/providers/typesafe",
+      website: "https://pypi.org/project/langchain-typesafe/",
+      post: "https://www.langchain.com/blog/building-a-harness-with-jev",
+    },
+    pricingNote:
+      "MIT package; TypeSafe bills per System One request unless you point clients at a self-hosted decision server.",
+    firstSeen: "2026-09-27",
+    relatedSlugs: [
+      "typesafe-ai-typesafe-sdk-python",
+      "vercel-ai-sdk-provider",
+      "nidhi-singh02-agent-router",
+      "gargpratyush-jev-router",
+    ],
+    relatedLearnSlugs: ["patterns", "use-cases"],
+    faq: [
+      {
+        question: "Where is the source code?",
+        answer:
+          "The integration ships inside github.com/langchain-ai/langchain; PyPI package langchain-typesafe is the install surface.",
+      },
+      {
+        question: "Do I need the experimental extra?",
+        answer:
+          "Only for ModelRouterMiddleware and AutoModeMiddleware. TypeSafeClassifier works from the base install documented on PyPI.",
+      },
+      {
+        question: "Which environment variable?",
+        answer:
+          "PyPI and LangChain docs use TYPESAFE_API_KEY for the TypeSafe client backing the classifier.",
+      },
+      {
+        question: "Is this a text generator?",
+        answer:
+          "No. TypeSafeClassifier returns typed probabilities for questions you define; it does not draft user-facing prose.",
+      },
+    ],
+    metaTitle: "langchain-typesafe: LangChain Runnable for System One",
+    metaDescription:
+      "Official langchain-typesafe PyPI package: TypeSafeClassifier, Choice, Score, Noul, and experimental routing middleware for LangChain agents.",
+  },
+
+  "mapika-decider": {
+    slug: "mapika-decider",
+    status: "published",
+    problem:
+      "Teams comparing open decision models still confuse Jared Palmer Kev, Von, Laya packaging, and independent Qwen trainers that all speak System One but ship different weights and eval stories.",
+    targetUser:
+      "ML engineers who want Mapika's Qwen3.5-based decider checkpoints, decider-ai serve on POST /v1/systemone, and public training mixture notes without TypeSafe API dependency.",
+    overview:
+      "decider (github.com/Mapika/decider, Apache-2.0, PyPI decider-ai import decider) is an independent System One class model family: state plus typed questions in, calibrated probabilities from one forward pass out, no text generation. Checkpoints include decider-0.8b through decider-35b-a3b and decider-2b-vision on Hugging Face under Mapika org tags. README states no affiliation with TypeSafe AI and no distillation from hosted Jev; teacher data comes from public mixture plus local Qwen3.5-27B labels. decider.serve and decider.serve_vllm expose TypeSafe wire-compatible HTTP; python -m decider.calibrate fits per-type temperature maps. README Standing section quotes JevBench and Decision Index leaderboard rows read on published dates; treat those as third-party harness results, not this directory's measurements. Showcase GIF on GitHub raw shows arcade games where each move is one forward pass.",
+    creator: {
+      name: "Mapika",
+      handle: "Mapika",
+      githubUrl: "https://github.com/Mapika",
+    },
+    jevUsage: {
+      flowRole:
+        "Self-hosted parallel Choice, Score, and Noul over shared state via native decider forward pass or /v1/systemone server",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "JSON state and questions map per README curl examples and decider-ai HTTP schema matching TypeSafe System One.",
+      decisionOut:
+        "Probability vector per question; no decoding step outside defined options.",
+      flowSteps: [
+        "pip or uv install decider-ai and pull weights from Hugging Face",
+        "python -m decider.serve or serve_vllm for HTTP clients",
+        "POST /v1/systemone with parallel questions on one state blob",
+        "Optional calibrate CLI on labelled rows before production gates",
+        "Point TypeSafe SDKs at local base URL when you want drop-in clients",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README JevBench table read 2026-09-21 lists decider-35b-a3b at 68.9 total score (#10 of 36) and decider-2b at 64.6 (#21 of 36).",
+          source: "github.com/Mapika/decider README Standing",
+        },
+        {
+          claim:
+            "README Decision Index v0.1 dated 2026-09-22 ranks decider-35b-a3b NVFP4 fourth of 32 at 54.3 and decider-2b fourteenth at 44.0.",
+          source: "github.com/Mapika/decider README Standing",
+        },
+        {
+          claim:
+            "Public GitHub repo Mapika/decider had 702 stars and 39 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "decider is its own model lineage, not a thin alias of Kev or Von. jaredpalmer-kev targets Jared's Qwen fine-tunes with SDK parity tables against hosted Jev; wfzyx-von chases non-autoregressive encoder speed; theoleecj-semif documents another open server narrative. ollaya-dev-ollaya can pull and serve decider ONNX wrappers for local :11435 workflows, but Mapika/decider and Hugging Face Mapika/decider-* repos remain training and weight source of truth. Compare realzachi-typesafe-adblock only when your question is browser clutter, not model training.",
+    keyFeatures: [
+      "decider-ai PyPI package with decider.serve and serve_vllm paths",
+      "Multiple HF checkpoints from 0.8B dense to 35B-A3b MoE",
+      "Public mixture.py and teacher_data transparency in repo",
+      "Game and browser RL stage notes with linked docs/DEMOS.md",
+      "calibrate CLI for per-type temperature fitting",
+    ],
+    stack: [
+      "Python",
+      "PyTorch",
+      "CUDA, Apple MPS, vLLM optional path",
+      "Hugging Face weights",
+    ],
+    links: {
+      repo: "https://github.com/Mapika/decider",
+      docs: "https://github.com/Mapika/decider/blob/main/docs/RESULTS.md",
+      demo: "https://raw.githubusercontent.com/Mapika/decider/main/media/showcase.gif",
+      website: "https://huggingface.co/Mapika",
+    },
+    pricingNote:
+      "Apache-2.0 code and published weights; you pay for GPUs and electricity. Third-party leaderboard hosting may bill separately.",
+    firstSeen: "2026-09-27",
+    relatedSlugs: [
+      "jaredpalmer-kev",
+      "wfzyx-von",
+      "ollaya-dev-ollaya",
+      "theoleecj-semif",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is decider affiliated with TypeSafe?",
+        answer:
+          "README states independent project, not affiliated with or endorsed by TypeSafe AI.",
+      },
+      {
+        question: "Does ollaya replace this repo?",
+        answer:
+          "ollaya packages ONNX serve for many open models including decider tags. Mapika/decider remains where training recipes and authoritative cards live.",
+      },
+      {
+        question: "What PyPI package name?",
+        answer:
+          "Install decider-ai; Python import remains decider per README.",
+      },
+      {
+        question: "Can I use TypeSafe SDKs against decider.serve?",
+        answer:
+          "README documents POST /v1/systemone with the TypeSafe wire format so compatible clients can point at localhost.",
+      },
+    ],
+    metaTitle: "decider: Mapika open System One model family",
+    metaDescription:
+      "Mapika/decider trains Qwen3.5 decision models with decider-ai serve, HF weights, JevBench and Decision Index citations, and TypeSafe-shaped HTTP.",
+  },
+
+  "kitze-unclutter": {
+    slug: "kitze-unclutter",
+    status: "published",
+    problem:
+      "Modern sites bury useful content under ads, newsletters, cookie walls, and social widgets, but regex blocklists break on the next redesign.",
+    targetUser:
+      "Chrome, Edge, Brave, or Firefox users who want a WXT extension that classifies clutter with Jev once, then reuses local template rules on return visits.",
+    overview:
+      "Unclutter (github.com/kitze/unclutter, MIT) is Kitze's browser extension built with Bun and WXT. On analyze, it collects bounded DOM candidates (not full page HTML), asks Jev to Choice among keep, ad, promotion, newsletter, social, cookie, and uncertain, then writes hide rules keyed by page template. TypeSafe direct mode uses POST https://api.typesafe.ai/v1/systemone with model jev-latest; Vercel AI Gateway mode uses typesafe-ai/jev on the evaluation endpoint. Manual mode runs on button click; On page visit mode reuses or upgrades templates while preserving paused rules and keep-visible overrides. README requires both selected-choice probability and TypeSafe confidence at least 0.9 when confidence is present; otherwise the element stays visible. Uncertain classifications always stay visible.",
+    creator: {
+      name: "Kitze",
+      handle: "thekitze",
+      xUrl: "https://x.com/thekitze",
+      githubUrl: "https://github.com/kitze",
+      companyUrl: "https://kitze.io",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-candidate clutter Choice with conservative thresholds before persisting template hide rules",
+      primitives: ["Choice"],
+      stateIn:
+        "Bounded candidate snippets and metadata from the active tab DOM; page text treated as untrusted evidence per README safety section.",
+      decisionOut:
+        "Category label per candidate; sub-threshold or uncertain results leave elements visible and skip aggressive hides.",
+      flowSteps: [
+        "User loads unpacked Chromium build or temporary Firefox add-on",
+        "Configure Gateway or TypeSafe key in popup (BYOK)",
+        "Analyze page or run on visit to classify candidates",
+        "Extension stores template rules locally for matching URLs",
+        "User can uncheck rules in Hidden elements to keep items visible",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README safety section: probability and confidence must both be at least 0.9 to hide when confidence is provided; uncertain never hides.",
+          source: "github.com/kitze/unclutter README",
+        },
+        {
+          claim:
+            "Public GitHub repo kitze/unclutter had 312 stars and 34 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Unclutter is a product-shaped cousin of realzachi-typesafe-adblock: both use Jev on web annoyances, but Unclutter emphasizes template reuse and Kitze's UX rather than a static blocklist narrative. browser-use-jev-ultrafast is for agent-driven clicks, not passive reading. No repo ships bundled API keys; operators bring Vercel AI Gateway or TypeSafe credentials. Pair with realzachi-typesafe-adblock when you want to compare approaches before standardizing internal extensions.",
+    keyFeatures: [
+      "WXT builds for Chrome MV3 and Firefox MV2",
+      "Manual and on-visit analyze modes",
+      "Template upgrade path with paused rule preservation",
+      "Hidden elements panel with per-rule visibility toggles",
+      "Conservative dual threshold on probability and confidence",
+    ],
+    stack: [
+      "TypeScript",
+      "Bun",
+      "WXT",
+      "Vercel AI Gateway or TypeSafe API",
+    ],
+    links: {
+      repo: "https://github.com/kitze/unclutter",
+      post: "https://x.com/thekitze/status/2100595129874817340",
+      website: "https://github.com/kitze/unclutter",
+    },
+    pricingNote:
+      "MIT extension; Jev or Gateway usage bills to your own keys.",
+    firstSeen: "2026-09-27",
+    relatedSlugs: [
+      "realzachi-typesafe-adblock",
+      "browser-use-jev-ultrafast",
+    ],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Does Unclutter upload full HTML?",
+        answer:
+          "README describes bounded candidates sent for classification, not entire page HTML dumps.",
+      },
+      {
+        question: "Which Jev backends are supported?",
+        answer:
+          "TypeSafe direct jev-latest or Vercel AI Gateway typesafe-ai/jev per README provider section.",
+      },
+      {
+        question: "How is this different from typesafe-adblock?",
+        answer:
+          "See realzachi-typesafe-adblock for that project's blocklist and flow. Unclutter focuses on template rules and Kitze's extension UX.",
+      },
+      {
+        question: "Is Safari supported?",
+        answer:
+          "README documents Chromium and Firefox paths; Safari packaging is not included.",
+      },
+    ],
+    metaTitle: "Unclutter: Jev-powered browser declutter extension",
+    metaDescription:
+      "kitze/unclutter classifies ads and clutter with TypeSafe or Gateway Jev, stores local template hides, and keeps uncertain elements visible.",
+  },
+
+  "receptron-laya": {
+    slug: "receptron-laya",
+    status: "published",
+    problem:
+      "Node services and edge workers cannot import Python RLAgent, yet teams still want Convai Laya probabilities without standing up a separate inference container.",
+    targetUser:
+      "TypeScript backends on Node 20+ that need Laya systemOne parity, Hugging Face download caching, and ONNX Runtime inference without PyTorch.",
+    overview:
+      "receptron/laya (github.com/receptron/laya, npm @receptron/laya, MIT) implements the Convai Innovations Laya decision model for Node using onnxruntime-node. Laya.load() fetches about 1.7 GB fp32 weights into ~/.cache/receptron-laya unless LAYA_CACHE overrides. systemOne batches all questions in one run with Choice, Score, and Noul outputs matching Python RLAgent.system_one and TypeSafe system_one shape to four decimal places per README. Model weights remain Apache-2.0 upstream at convaiinnovations/laya; receptron publishes ONNX bundles such as receptron/laya-onnx. This listing is the JavaScript runtime only. Do not treat it as a second Laya weights product page.",
+    creator: {
+      name: "receptron",
+      handle: "receptron",
+      githubUrl: "https://github.com/receptron",
+    },
+    jevUsage: {
+      flowRole:
+        "Local ONNX System One client for parallel questions over structured state in Node",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Plain objects such as ticket subject and body fields or arbitrary JSON state passed to systemOne.",
+      decisionOut:
+        "Typed answers map with choice probabilities, score expectations, or noul P(true) per question key.",
+      flowSteps: [
+        "npm install @receptron/laya on Node 20+",
+        "await Laya.load() to download or load local ONNX bundle",
+        "Call systemOne with state and questions record",
+        "Read per-question typed answer objects without casting",
+        "await laya.close() when shutting down the process",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README documents about 140 ms for three questions on warm Apple-silicon CPU and about 1.7 GB fp32 download size.",
+          source: "github.com/receptron/laya README",
+        },
+        {
+          claim:
+            "Public GitHub repo receptron/laya had 500 stars and 44 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "ollaya-dev-ollaya is the Rust daemon story: pull many open decision checkpoints and serve POST /v1/systemone on port 11435. receptron-laya is the embeddable npm library when a single Node service needs Laya only. jaredpalmer-kev and wfzyx-von remain separate open model families with their own repos. Point model authorship to Convai Innovations Laya; point package maintenance to receptron. For browser or agent automation, cross-read browser-use-jev-ultrafast instead of forcing Laya into the hot path.",
+    keyFeatures: [
+      "Typed systemOne API matching Python reference",
+      "HF download cache with progress callbacks",
+      "Optional local modelDir from export/export_onnx.py bundle",
+      "Batched questions in one ONNX forward pass",
+      "executionProviders and sessionOptions tuning",
+    ],
+    stack: [
+      "Node.js 20+",
+      "TypeScript",
+      "ONNX Runtime",
+      "Hugging Face hub downloads",
+    ],
+    links: {
+      repo: "https://github.com/receptron/laya",
+      docs: "https://github.com/receptron/laya#usage",
+      website: "https://www.npmjs.com/package/@receptron/laya",
+    },
+    pricingNote:
+      "MIT package; upstream Laya weights follow Convai license; you pay for compute and bandwidth.",
+    firstSeen: "2026-09-27",
+    relatedSlugs: [
+      "ollaya-dev-ollaya",
+      "jaredpalmer-kev",
+      "wfzyx-von",
+    ],
+    relatedLearnSlugs: ["system-one", "where-to-run-jev"],
+    faq: [
+      {
+        question: "Does this re-list Laya model weights?",
+        answer:
+          "No. We document the receptron Node runtime. Weights and training story stay on Convai Innovations Hugging Face repos.",
+      },
+      {
+        question: "How does this differ from ollaya?",
+        answer:
+          "ollaya is a multi-model pull and serve CLI. @receptron/laya is a library for embedding Laya in Node apps.",
+      },
+      {
+        question: "How much disk and RAM?",
+        answer:
+          "README cites about 1.7 GB fp32 cache plus a few hundred MB per batch on top of roughly 2 GB loaded model budget.",
+      },
+      {
+        question: "Can I pin ONNX revisions?",
+        answer:
+          "Laya.load accepts repo, subfolder, and revision parameters documented in README Options.",
+      },
+    ],
+    metaTitle: "@receptron/laya: Laya System One client for Node",
+    metaDescription:
+      "receptron/laya npm package runs Convai Laya ONNX in Node 20+ with typed systemOne, HF cache, and Choice, Score, Noul batching.",
+  },
+
 };
